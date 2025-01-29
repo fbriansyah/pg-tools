@@ -1,0 +1,12 @@
+.env
+bin
+*_templ.go*
+node_modules
+vendor
+tmp/*
+.config.yaml
+.secret.yaml
+tmp/main
+tmp/*.log
+tmp/build-errors.log
+tmp
