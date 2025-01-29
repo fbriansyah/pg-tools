@@ -6,7 +6,7 @@ tmp_dir = "tmp"
   cmd = "make gen-views && make build-css && go build -o ./tmp/main.exe ."
 	
   delay = 1000
-  exclude_dir = ["assets", "tmp", "vendor"]
+  exclude_dir = ["assets", "tmp", "vendor", ".git"]
   exclude_file = []
   exclude_regex = [".*_templ.go"]
   exclude_unchanged = false

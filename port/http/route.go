@@ -12,6 +12,7 @@ import (
 
 type RouterModule struct {
 	DashboardCtrl controller.IDashboardController
+	AuthCtrl      controller.IAuthController
 }
 
 func NewRoute(FS *embed.FS, rm *RouterModule) http.Handler {
@@ -28,6 +29,14 @@ func NewRoute(FS *embed.FS, rm *RouterModule) http.Handler {
 		http.Redirect(w, r, "/dashboard", http.StatusFound)
 	})
 	router.Get("/dashboard", controller.MakeHandler(rm.DashboardCtrl.Index))
+	router.Route("/auth", func(r chi.Router) {
+		r.Group(func(r chi.Router) {
+			r.Get("/", func(w http.ResponseWriter, r *http.Request) {
+				http.Redirect(w, r, "/auth/sign-in", http.StatusFound)
+			})
+			r.Get("/sign-in", controller.MakeHandler(rm.AuthCtrl.SignIn))
+		})
+	})
 
 	return router
 }

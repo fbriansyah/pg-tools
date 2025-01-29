@@ -12,6 +12,7 @@ import (
 	"time"
 
 	httpModule "github.com/fbriansyah/pg-tools/port/http"
+	controller_auth "github.com/fbriansyah/pg-tools/port/http/controller/auth"
 	controller_dashboard "github.com/fbriansyah/pg-tools/port/http/controller/dashboard"
 )
 
@@ -22,6 +23,7 @@ func main() {
 	port := "3033"
 	router := httpModule.NewRoute(&FS, &httpModule.RouterModule{
 		DashboardCtrl: controller_dashboard.New(),
+		AuthCtrl:      controller_auth.New(),
 	})
 
 	// The HTTP Server
