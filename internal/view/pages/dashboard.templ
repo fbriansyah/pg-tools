@@ -1,9 +1,11 @@
 package view_pages
 
 import "github.com/fbriansyah/pg-tools/internal/view/layouts"
+import "github.com/fbriansyah/pg-tools/internal/view/components"
 
 templ HelloIndex() {
-  @view_layouts.Default(){
+  @view_layouts.AppLayout("Dashboard"){
+    @view_components.TopTabs()
     <h1>HelloWorld</h1>
   }
 }
