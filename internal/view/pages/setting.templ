@@ -4,7 +4,7 @@ import "github.com/fbriansyah/pg-tools/internal/view/components"
 import "github.com/fbriansyah/pg-tools/internal/view/layouts"
 
 templ SettingPage() {
-  @view_layouts.AppLayout("Setting"){
+  @view_layouts.AppLayout("Setting", view_layouts.LayoutMeta{Slug: "setting"}){
     <div class="mb-8">
       @view_components.Title("Setting")
     </div>

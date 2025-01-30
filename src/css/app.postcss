@@ -43,5 +43,29 @@
     }
 }
 
+/* Sidebar */
+.sidebar__item {
+    @apply flex gap-x-3 rounded-md p-2 text-sm/6 font-semibold;
+    & > svg {
+        @apply size-6 shrink-0;
+    }
+    &.active {
+        @apply bg-gray-50  text-indigo-600;
+        & > svg {
+            @apply text-indigo-600;
+        }
+    }
+    &.normal {
+        @apply text-gray-700 hover:text-indigo-600 hover:bg-gray-50;
+        & > svg {
+            @apply text-gray-400;
+        }
+    }
+}
+
+.sidebar__svg {
+    @apply flex size-6 shrink-0 items-center justify-center rounded-lg border border-gray-200 bg-white text-[0.625rem] font-medium text-gray-400;
+}
+
 @tailwind utilities;
 

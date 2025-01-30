@@ -9,6 +9,7 @@ gen-views:
 .PHONY: install-tool
 install-tool:
 	go install github.com/a-h/templ/cmd/templ@latest
+	go install github.com/air-verse/air@latest
 
 .phony: tidy
 tidy:

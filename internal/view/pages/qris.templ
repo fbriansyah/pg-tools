@@ -4,7 +4,7 @@ import "github.com/fbriansyah/pg-tools/internal/view/components"
 import "github.com/fbriansyah/pg-tools/internal/view/layouts"
 
 templ QrisPage() {
-  @view_layouts.AppLayout("Qris"){
+  @view_layouts.AppLayout("Qris", view_layouts.LayoutMeta{Slug: "qris"}){
     <div class="mb-8">
       @view_components.Title("Qris")
     </div>
