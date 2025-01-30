@@ -1,0 +1,12 @@
+package view_pages
+
+import "github.com/fbriansyah/pg-tools/internal/view/components"
+import "github.com/fbriansyah/pg-tools/internal/view/layouts"
+
+templ VirtualAccountPage() {
+  @view_layouts.AppLayout("Virtual Account"){
+    <div class="mb-8">
+      @view_components.Title("Virtual Account")
+    </div>
+  }
+}

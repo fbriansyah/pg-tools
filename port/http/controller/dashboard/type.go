@@ -10,4 +10,4 @@ func New() *DashboardController {
 	return &DashboardController{}
 }
 
-var _ controller.IDashboardController = &DashboardController{}
+var _ controller.IDashboardController = (*DashboardController)(nil)

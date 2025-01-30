@@ -1,0 +1,12 @@
+package view_pages
+
+import "github.com/fbriansyah/pg-tools/internal/view/components"
+import "github.com/fbriansyah/pg-tools/internal/view/layouts"
+
+templ QrisPage() {
+  @view_layouts.AppLayout("Qris"){
+    <div class="mb-8">
+      @view_components.Title("Qris")
+    </div>
+  }
+}

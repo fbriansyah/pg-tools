@@ -14,6 +14,10 @@ import (
 type RouterModule struct {
 	DashboardCtrl controller.IDashboardController
 	AuthCtrl      controller.IAuthController
+	VACtrl        controller.IVirtualAccountController
+	QrisCtrl      controller.IQrisController
+	UserCtrl      controller.IUserController
+	SettingCtrl   controller.ISettingController
 }
 
 func NewRoute(FS *embed.FS, rm *RouterModule) http.Handler {
@@ -27,9 +31,32 @@ func NewRoute(FS *embed.FS, rm *RouterModule) http.Handler {
 
 	router.Handle("/*", http.StripPrefix("/", http.FileServer(http.FS(FS))))
 	router.Get("/", func(w http.ResponseWriter, r *http.Request) {
-		http.Redirect(w, r, "/dashboard", http.StatusFound)
+		http.Redirect(w, r, "/auth/sign-in", http.StatusFound)
 	})
+	// Dashboard
 	router.Get("/dashboard", controller.MakeHandler(rm.DashboardCtrl.Index))
+
+	// Virtual Account
+	router.Route("/dashboard/virtual-account", func(r chi.Router) {
+		r.Get("/", controller.MakeHandler(rm.VACtrl.Index))
+	})
+
+	// Qris
+	router.Route("/dashboard/qris", func(r chi.Router) {
+		r.Get("/", controller.MakeHandler(rm.QrisCtrl.Index))
+	})
+
+	// User
+	router.Route("/dashboard/users", func(r chi.Router) {
+		r.Get("/", controller.MakeHandler(rm.UserCtrl.Index))
+	})
+
+	// Setting
+	router.Route("/dashboard/settings", func(r chi.Router) {
+		r.Get("/", controller.MakeHandler(rm.SettingCtrl.Index))
+	})
+
+	// Auth
 	router.Route("/auth", func(r chi.Router) {
 		r.Group(func(r chi.Router) {
 			r.Get("/", func(w http.ResponseWriter, r *http.Request) {
@@ -42,6 +69,9 @@ func NewRoute(FS *embed.FS, rm *RouterModule) http.Handler {
 				slog.Info("Sing in Info", "email", email, "pass", password)
 				http.Redirect(w, r, "/dashboard", http.StatusFound)
 			})
+		})
+		router.Get("/logout", func(w http.ResponseWriter, r *http.Request) {
+			http.Redirect(w, r, "/auth/sign-in", http.StatusFound)
 		})
 	})
 

@@ -14,6 +14,10 @@ import (
 	httpModule "github.com/fbriansyah/pg-tools/port/http"
 	controller_auth "github.com/fbriansyah/pg-tools/port/http/controller/auth"
 	controller_dashboard "github.com/fbriansyah/pg-tools/port/http/controller/dashboard"
+	controller_qris "github.com/fbriansyah/pg-tools/port/http/controller/qris"
+	controller_setting "github.com/fbriansyah/pg-tools/port/http/controller/setting"
+	controller_user "github.com/fbriansyah/pg-tools/port/http/controller/user"
+	controller_virtualAccount "github.com/fbriansyah/pg-tools/port/http/controller/virtualAccount"
 )
 
 //go:embed public
@@ -24,6 +28,10 @@ func main() {
 	router := httpModule.NewRoute(&FS, &httpModule.RouterModule{
 		DashboardCtrl: controller_dashboard.New(),
 		AuthCtrl:      controller_auth.New(),
+		VACtrl:        controller_virtualAccount.New(),
+		QrisCtrl:      controller_qris.New(),
+		UserCtrl:      controller_user.New(),
+		SettingCtrl:   controller_setting.New(),
 	})
 
 	// The HTTP Server
