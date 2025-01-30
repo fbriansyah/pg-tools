@@ -2,6 +2,7 @@ package http
 
 import (
 	"embed"
+	"log/slog"
 	"net/http"
 	"time"
 
@@ -35,6 +36,12 @@ func NewRoute(FS *embed.FS, rm *RouterModule) http.Handler {
 				http.Redirect(w, r, "/auth/sign-in", http.StatusFound)
 			})
 			r.Get("/sign-in", controller.MakeHandler(rm.AuthCtrl.SignIn))
+			r.Post("/sign-in", func(w http.ResponseWriter, r *http.Request) {
+				email := r.FormValue("email")
+				password := r.FormValue("password")
+				slog.Info("Sing in Info", "email", email, "pass", password)
+				http.Redirect(w, r, "/dashboard", http.StatusFound)
+			})
 		})
 	})
 

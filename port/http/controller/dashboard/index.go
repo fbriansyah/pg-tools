@@ -9,5 +9,5 @@ import (
 
 // Index implements controller.IDashboardController.
 func (d *DashboardController) Index(w http.ResponseWriter, r *http.Request) error {
-	return controller.Render(r, w, view_pages.HelloIndex())
+	return controller.Render(r, w, view_pages.DashboardPage())
 }
